@@ -55,5 +55,42 @@
         </div>
       </form>
     </dialog>
+
+    <dialog id="createTaskDialog">
+      <form action="#" method="dialog" id="createTaskForm">
+        <h2>Add a new task:</h2>
+        <label for="task-title">Title:</label>
+        <input
+          type="text"
+          name="task-title"
+          id="task-title"
+          required
+          autofocus
+        />
+
+        <label for="task-description">Description:</label>
+        <input
+          type="text"
+          name="task-description"
+          id="task-description"
+          required
+        />
+
+        <label for="task-dueDate ">Due date:</label>
+        <input type="date" name="task-dueDate" id="task-dueDate" required />
+
+        <label for="task-priority ">Priority:</label>
+        <select name="task-priority" id="task-priority" required>
+          <option value="">-- Select priority --</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <div class="form-actions">
+          <button type="submit">Add task</button>
+          <button type="button" id="cancelTaskBtn">Cancel</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
