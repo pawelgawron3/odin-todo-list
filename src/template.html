@@ -35,5 +35,25 @@
     <footer>
       <p>Copyright &#169; 2025 The Odin Project</p>
     </footer>
+    <dialog id="createProjectDialog">
+      <form action="#" method="dialog" id="createProjectForm">
+        <h2>Add a new project:</h2>
+        <label for="project-author">Author:</label>
+        <input
+          type="text"
+          name="project-author"
+          id="project-author"
+          required
+          autofocus
+        />
+
+        <label for="project-title">Title:</label>
+        <input type="text" name="project-title" id="project-title" required />
+        <div class="form-actions">
+          <button type="submit">Add project</button>
+          <button type="button" id="cancelProjectBtn">Cancel</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
