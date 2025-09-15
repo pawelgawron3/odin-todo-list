@@ -3,6 +3,7 @@ class Project {
     this.author = author;
     this.title = title;
   }
+  tasks = [];
 }
 
 function createProject(e, dialog) {
