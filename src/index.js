@@ -1,11 +1,11 @@
 let projects = [];
-let tasks = [];
 
 import "./styles.css";
 import { createProject } from "./create-project";
 import { displayProjectsList } from "./display-projects-list";
 import { addTask } from "./add-task";
-import { displayTasksList } from "./display-tasks-list";
+import { displayProjectContent } from "./display-project-content";
+import { getActiveProject } from "./active-project";
 
 const create_project_btn = document.querySelector("#create-project-btn");
 const createProjectDialog = document.querySelector("#createProjectDialog");
@@ -35,8 +35,13 @@ create_project_btn.addEventListener("click", () => {
 
 createTaskForm.addEventListener("submit", (e) => {
   let newTask = addTask(e, createTaskDialog);
-  tasks.push(newTask);
-  displayTasksList(tasks);
+  let activeProject = getActiveProject();
+  if (activeProject) {
+    activeProject.tasks.push(newTask);
+
+    displayProjectContent(activeProject);
+  }
+
   createTaskDialog.close();
   createTaskForm.reset();
 });
