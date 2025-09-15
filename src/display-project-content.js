@@ -1,4 +1,5 @@
 import { showTaskModal } from "./show-task-modal";
+import { displayTasksList } from "./display-tasks-list";
 
 function displayProjectContent(project) {
   const content = document.querySelector("#content");
@@ -21,16 +22,15 @@ function displayProjectContent(project) {
     showTaskModal();
   });
 
-  const taskList = document.createElement("ul");
-  taskList.classList.add("task-list");
-  taskList.textContent = "No tasks yet.";
-
   projectContainer.appendChild(titleEl);
   projectContainer.appendChild(authorEl);
   projectContainer.appendChild(addTaskBtn);
-  projectContainer.appendChild(taskList);
 
   content.appendChild(projectContainer);
+
+  if (project.tasks.length > 0) {
+    displayTasksList(project);
+  }
 }
 
 export { displayProjectContent };

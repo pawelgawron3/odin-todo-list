@@ -1,17 +1,15 @@
-function displayTasksList(tasksArray) {
-  let task_list = document.querySelector(".task-list");
+function displayTasksList(project) {
+  let container = document.querySelector("#content .project-container");
+  let task_list = container.querySelector(".task-list");
 
   if (!task_list) {
     task_list = document.createElement("ul");
     task_list.classList.add("task-list");
-    document
-      .querySelector("#content .project-container")
-      .appendChild(task_list);
+    container.appendChild(task_list);
+  } else {
+    task_list.innerHTML = "";
   }
-
-  task_list.innerHTML = "";
-
-  tasksArray.forEach((task) => {
+  project.tasks.forEach((task) => {
     const li = document.createElement("li");
     li.classList.add("task");
 
@@ -42,7 +40,14 @@ function displayTasksList(tasksArray) {
     deleteBtn.textContent = "Delete";
     deleteBtn.classList.add("delete-task-btn");
 
-    //eventListener do deleteBtn
+    deleteBtn.addEventListener("click", () => {
+      let index = project.tasks.indexOf(task);
+      if (index !== -1) {
+        project.tasks.splice(index, 1);
+      }
+
+      displayTasksList(project);
+    });
 
     actions.appendChild(deleteBtn);
 
