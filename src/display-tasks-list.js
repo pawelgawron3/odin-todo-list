@@ -58,12 +58,21 @@ function displayTasksList(project) {
     taskCompletedCheck.type = "checkbox";
     taskCompletedCheck.classList.add("taskCheckbox");
 
+    if (task.completed) {
+      taskCompletedCheck.checked = true;
+      li.classList.add("task-completed");
+    }
+
     taskCompletedCheck.addEventListener("change", () => {
-      if (li.classList.contains("task-completed")) {
+      if (task.completed) {
         li.classList.remove("task-completed");
+        task.completed = false;
       } else {
         li.classList.add("task-completed");
+        task.completed = true;
       }
+      let allProjects = getProjects();
+      saveProjectsTostorage(allProjects);
     });
 
     actions.appendChild(taskCompletedCheck);
