@@ -1,5 +1,6 @@
 import { displayProjectContent } from "./display-project-content";
 import { setActiveProject } from "./active-project";
+import { getActiveProject } from "./active-project";
 
 function displayProjectsList(projectsArray) {
   const sidebar = document.querySelector("#sidebar");
@@ -28,6 +29,11 @@ function displayProjectsList(projectsArray) {
       e.stopPropagation();
 
       let index = projectsArray.indexOf(project);
+      let activeProject = getActiveProject();
+      if (projectsArray.indexOf(activeProject) === index) {
+        const content = document.querySelector("#content");
+        content.innerHTML = "";
+      }
       if (index !== -1) {
         projectsArray.splice(index, 1);
         displayProjectsList(projectsArray);
