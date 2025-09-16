@@ -49,6 +49,19 @@ function displayTasksList(project) {
       displayTasksList(project);
     });
 
+    const taskCompletedCheck = document.createElement("input");
+    taskCompletedCheck.type = "checkbox";
+    taskCompletedCheck.classList.add("taskCheckbox");
+
+    taskCompletedCheck.addEventListener("change", () => {
+      if (li.classList.contains("task-completed")) {
+        li.classList.remove("task-completed");
+      } else {
+        li.classList.add("task-completed");
+      }
+    });
+
+    actions.appendChild(taskCompletedCheck);
     actions.appendChild(deleteBtn);
 
     li.appendChild(header);
