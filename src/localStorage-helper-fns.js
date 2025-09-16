@@ -13,6 +13,7 @@ class Task {
     this.dueDate = dueDate;
     this.priority = priority;
   }
+  completed = false;
 }
 
 function saveProjectsTostorage(projects) {
@@ -28,9 +29,11 @@ function loadProjectsFromStorage() {
   const plainProjects = JSON.parse(storedProjects);
   return plainProjects.map((p) => {
     let project = new Project(p.author, p.title);
-    project.tasks = (p.tasks || []).map(
-      (t) => new Task(t.title, t.description, t.dueDate, t.priority)
-    );
+    project.tasks = (p.tasks || []).map((t) => {
+      const task = new Task(t.title, t.description, t.dueDate, t.priority);
+      task.completed = t.completed;
+      return task;
+    });
     //let tasks = [];
     // p.tasks.map((t) => {
     //   let task = new Task(t.title, t.description, t.dueDate, t.priority);
