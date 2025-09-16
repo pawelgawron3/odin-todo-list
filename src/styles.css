@@ -184,6 +184,40 @@ aside#sidebar {
   background-color: #fff;
 }
 
+.taskCheckbox {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #888;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.3s ease;
+}
+
+.taskCheckbox:hover {
+  border-color: #555;
+}
+
+.taskCheckbox:checked {
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.taskCheckbox:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 14px;
+  position: absolute;
+  left: 3px;
+  top: 0px;
+}
+
+.task-completed {
+  border: 1px solid green;
+}
+
 .task-header {
   display: flex;
   justify-content: space-between;
@@ -217,7 +251,9 @@ aside#sidebar {
 }
 
 .task-actions {
-  align-self: flex-end;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   margin-top: 10px;
 }
 
