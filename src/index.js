@@ -1,4 +1,5 @@
-let projects = [];
+let projects = loadProjectsFromStorage();
+setProjects(projects);
 
 import "./styles.css";
 import { createProject } from "./create-project";
@@ -6,6 +7,11 @@ import { displayProjectsList } from "./display-projects-list";
 import { addTask } from "./add-task";
 import { displayProjectContent } from "./display-project-content";
 import { getActiveProject } from "./active-project";
+import {
+  saveProjectsTostorage,
+  loadProjectsFromStorage,
+} from "./localStorage-helper-fns";
+import { setProjects } from "./project-state";
 
 const create_project_btn = document.querySelector("#create-project-btn");
 const createProjectDialog = document.querySelector("#createProjectDialog");
@@ -17,9 +23,12 @@ const createTaskDialog = document.querySelector("#createTaskDialog");
 const createTaskForm = createTaskDialog.querySelector("#createTaskForm");
 const cancelTaskBtn = createTaskDialog.querySelector("#cancelTaskBtn");
 
+displayProjectsList(projects);
+
 createProjectForm.addEventListener("submit", (e) => {
   let newProject = createProject(e, createProjectDialog);
   projects.push(newProject);
+  saveProjectsTostorage(projects);
   displayProjectsList(projects);
   createProjectDialog.close();
   createProjectForm.reset();
@@ -38,6 +47,7 @@ createTaskForm.addEventListener("submit", (e) => {
   let activeProject = getActiveProject();
   if (activeProject) {
     activeProject.tasks.push(newTask);
+    saveProjectsTostorage(projects);
 
     displayProjectContent(activeProject);
   }

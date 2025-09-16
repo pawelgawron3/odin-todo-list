@@ -1,3 +1,6 @@
+import { saveProjectsTostorage } from "./localStorage-helper-fns";
+import { getProjects } from "./project-state";
+
 function displayTasksList(project) {
   let container = document.querySelector("#content .project-container");
   let task_list = container.querySelector(".task-list");
@@ -44,6 +47,8 @@ function displayTasksList(project) {
       let index = project.tasks.indexOf(task);
       if (index !== -1) {
         project.tasks.splice(index, 1);
+        let allProjects = getProjects();
+        saveProjectsTostorage(allProjects);
       }
 
       displayTasksList(project);

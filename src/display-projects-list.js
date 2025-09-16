@@ -1,6 +1,6 @@
 import { displayProjectContent } from "./display-project-content";
-import { setActiveProject } from "./active-project";
-import { getActiveProject } from "./active-project";
+import { getActiveProject, setActiveProject } from "./active-project";
+import { saveProjectsTostorage } from "./localStorage-helper-fns";
 
 function displayProjectsList(projectsArray) {
   const sidebar = document.querySelector("#sidebar");
@@ -36,6 +36,7 @@ function displayProjectsList(projectsArray) {
       }
       if (index !== -1) {
         projectsArray.splice(index, 1);
+        saveProjectsTostorage(projectsArray);
         displayProjectsList(projectsArray);
       }
     });
