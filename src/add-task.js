@@ -5,6 +5,7 @@ class Task {
     this.dueDate = dueDate;
     this.priority = priority;
   }
+  completed = false;
 }
 
 function addTask(e, dialog) {
